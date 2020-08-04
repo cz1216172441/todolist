@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TodoListInput from './../TodoListInput';
 import TodoListItem from './../TodoListItem';
-import {deleteTodoItem, achieveTodoItem, storeTodoItems} from './../../actions'
+import {deleteTodoItem, storeTodoItems} from './../../actions'
 import PropTypes from 'prop-types'
 import {getTodos} from "../../apis/todoList";
 
@@ -21,10 +21,8 @@ class TodoList extends Component {
         <h2>All TodoList</h2>
         <TodoListInput/>
         {
-          this.props.items.map(item =>
-            <TodoListItem key={item.id} item={item}
-                          handleDelete={this.props.deleteTodoItem}
-                          handleAchieve={this.props.achieveTodoItem}/>)
+          this.props.items.map(item => <TodoListItem key={item.id} item={item}
+                          handleDelete={() => this.props.deleteTodoItem({id: item.id})} />)
         }
       </div>
     );
@@ -41,4 +39,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {deleteTodoItem, achieveTodoItem, storeTodoItems})(TodoList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    storeTodoItems,
+    deleteTodoItem: ({id}) => {
+      dispatch(deleteTodoItem({id}))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
