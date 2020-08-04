@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteToDoItem, achieveTodoItem } from './../../actions'
+import { deleteTodoItem, achieveTodoItem } from './../../actions'
 import TodoListItem from '../TodoListItem';
 
 class FinishedTodoListPage extends Component {
@@ -12,7 +12,7 @@ class FinishedTodoListPage extends Component {
                 {
                     this.props.items.map((item, index) => 
                         <TodoListItem key={index} index={index} item={item}
-                            handleDelete={this.props.deleteToDoItem}
+                            handleDelete={this.props.deleteTodoItem}
                             handleAchieve={this.props.achieveTodoItem} />)
                 }
             </div>
@@ -23,8 +23,8 @@ class FinishedTodoListPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.toDoListReducer.items.filter(item => item.done)
+        items: state.todoListReducer.items.filter(item => item.done)
     }
 }
 
-export default connect(mapStateToProps, { deleteToDoItem, achieveTodoItem })(FinishedTodoListPage);
+export default connect(mapStateToProps, { deleteTodoItem, achieveTodoItem })(FinishedTodoListPage);

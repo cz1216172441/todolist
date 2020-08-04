@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addToDoItem } from '../../actions';
+import { addTodoItem } from '../../actions';
 import { connect } from 'react-redux';
 
 class TodoListInput extends Component{
@@ -24,7 +24,7 @@ class TodoListInput extends Component{
                 text: this.state.text,
                 done: false
             }
-            this.props.addToDoItem(item);
+            this.props.addTodoItem(item);
             this.ref.current.value = ""
         } else {
             alert("Please input todo item!");
@@ -41,4 +41,4 @@ class TodoListInput extends Component{
     }
 }
 
-export default connect(null, { addToDoItem })(TodoListInput);
+export default connect(null, { addTodoItem })(TodoListInput);

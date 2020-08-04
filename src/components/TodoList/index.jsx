@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TodoListInput from './../TodoListInput';
 import TodoListItem from './../TodoListItem';
-import { deleteToDoItem, achieveTodoItem } from './../../actions'
+import { deleteTodoItem, achieveTodoItem } from './../../actions'
 import PropTypes from 'prop-types'
 
 class TodoList extends Component{
@@ -29,8 +29,8 @@ TodoList.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.toDoListReducer.items
+        items: state.todoListReducer.items
     }
 }
 
-export default connect(mapStateToProps, { deleteToDoItem, achieveTodoItem })(TodoList);
+export default connect(mapStateToProps, { deleteToDoItem: deleteTodoItem, achieveTodoItem })(TodoList);
