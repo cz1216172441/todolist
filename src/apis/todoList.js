@@ -20,7 +20,8 @@ export function postTodos(data) {
 export function putTodos(data) {
     return request({
         url: `${todoRootUrl}/${data.id}`,
-        method: 'put'
+        method: 'put',
+        data: {status: data.status}
     })
 }
 

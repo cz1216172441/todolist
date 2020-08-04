@@ -5,7 +5,7 @@ class TodoListItem extends Component{
     render() {
         return (
             <div>
-                <label
+                <label onClick={this.props.handleChange}
                     style={{ textDecorationLine: this.props.item.status ? 'line-through' : 'none' }} >
                     { this.props.item.content }
                 </label>

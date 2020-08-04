@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TodoListInput from './../TodoListInput';
 import TodoListItem from './../TodoListItem';
-import {deleteTodoItem, storeTodoItems} from './../../actions'
+import {deleteTodoItem, storeTodoItems, putTodoItem} from './../../actions'
 import PropTypes from 'prop-types'
 import {getTodos} from "../../apis/todoList";
 
@@ -22,6 +22,7 @@ class TodoList extends Component {
         <TodoListInput/>
         {
           this.props.items.map(item => <TodoListItem key={item.id} item={item}
+                          handleChange={() => this.props.changeTodoItemStatus({id: item.id, status: !item.status})}
                           handleDelete={() => this.props.deleteTodoItem({id: item.id})} />)
         }
       </div>
@@ -44,6 +45,9 @@ const mapDispatchToProps = (dispatch) => {
     storeTodoItems,
     deleteTodoItem: ({id}) => {
       dispatch(deleteTodoItem({id}))
+    },
+    changeTodoItemStatus: ({id, status}) => {
+      dispatch(putTodoItem({id, status}))
     }
   }
 }
