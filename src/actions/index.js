@@ -36,9 +36,9 @@ export const deleteTodoItem = ({id}) => {
   }
 }
 
-export const putTodoItem = ({id}) => {
+export const putTodoItem = (items) => {
   return (dispatch) => {
-    putTodos({id}).then(res => {
+    putTodos(items).then(res => {
       if (res.status === 200) {
         dispatch(getTodoItem());
       }

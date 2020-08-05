@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TodoListInput from './../TodoListInput';
 import TodoListItem from './../TodoListItem';
-import {deleteTodoItem, storeTodoItems, putTodoItem} from './../../actions'
+import {deleteTodoItem, storeTodoItems, putTodoItem} from '../../actions'
 import PropTypes from 'prop-types'
 import {getTodos} from "../../apis/todoList";
 
@@ -10,8 +10,9 @@ class TodoList extends Component {
 
   componentDidMount() {
     getTodos().then(res => {
-      const items = res.data ? res.data : [];
-      this.props.storeTodoItems(items);
+      if (res.status === 200) {
+        this.props.storeTodoItems(res.data);
+      }
     });
   }
 
@@ -42,7 +43,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeTodoItems,
+    storeTodoItems: (items) => {
+      dispatch(storeTodoItems(items))
+    },
     deleteTodoItem: ({id}) => {
       dispatch(deleteTodoItem({id}))
     },
