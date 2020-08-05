@@ -8,13 +8,13 @@ class TodoListItem extends Component {
         return (
             <div>
                 <Row>
-                    <Col span={16} >
+                    <Col span={16}>
                         <label onClick={this.props.handleChange}
                                style={{textDecorationLine: this.props.item.status ? 'line-through' : 'none'}}>
                             {this.props.item.content}
                         </label>
                     </Col>
-                    <Col span={4} >
+                    <Col span={4}>
                         <Button type={"link"} onClick={this.props.handleDelete}>X</Button>
                     </Col>
                 </Row>

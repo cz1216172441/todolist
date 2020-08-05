@@ -2,3 +2,6 @@ export const STORE_TODO_ITEM = 'STORE_TODO_ITEM';
 export const ADD_TODO_ITEM = 'ADD_TODO_ITEM';
 export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
 export const ACHIEVE_TODO_ITEM = 'ACHIEVE_TODO_ITEM';
+
+
+export const LOADING_TOGGLE = 'LOADING_TOGGLE';

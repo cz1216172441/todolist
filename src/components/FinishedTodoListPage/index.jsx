@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {deleteTodoItem, storeTodoItems, putTodoItem} from '../../actions'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {deleteTodoItem, putTodoItem, storeTodoItems} from '../../actions'
 import TodoListItem from '../TodoListItem';
 import {getTodos} from "../../apis/todoList";
 import TodoMenu from "../TodoMenu";
+import {List} from "antd";
 
 class FinishedTodoListPage extends Component {
 
@@ -19,12 +20,17 @@ class FinishedTodoListPage extends Component {
         return (
             <div>
                 <TodoMenu />
-                {
-                    this.props.items.map((item, index) => 
-                        <TodoListItem key={index} index={index} item={item}
-                                      handleChange={() => this.props.changeTodoItemStatus({id: item.id, status: !item.status})}
-                                      handleDelete={() => this.props.deleteTodoItem({id: item.id})} />)
-                }
+                <List style={{marginTop: '20px'}} itemLayout="horizontal"
+                      dataSource={this.props.items} bordered
+                      renderItem={item => (
+                          <List.Item>
+                              <TodoListItem key={item.id} item={item}
+                                            handleChange={() => this.props.changeTodoItemStatus({
+                                                id: item.id,
+                                                status: !item.status
+                                            })}
+                                            handleDelete={() => this.props.deleteTodoItem({id: item.id})}/>
+                          </List.Item>)}/>
             </div>
         );
     }

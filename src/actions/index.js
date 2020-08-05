@@ -4,8 +4,6 @@ import {deleteTodos, getTodos, postTodos, putTodos} from "../apis/todoList";
 
 export const storeTodoItems = createAction(types.STORE_TODO_ITEM, (items) => ({ payload: items }));
 
-export const achieveTodoItem = createAction(types.ACHIEVE_TODO_ITEM, (id) => ({ payload: id }));
-
 const getTodoItem = () => {
   return (dispatch) => {
     getTodos().then(res => {

@@ -21,6 +21,7 @@ class TodoMenu extends Component {
     render() {
         return (
             <div>
+
                 <Menu mode={this.state.mode}
                       selectedKeys={this.state.current}
                       onClick={this.handleClick}>
