@@ -1,9 +1,10 @@
 import React from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import ReactDOM from 'react-dom'
-import store from './reducers'
-import Router from './routers'
+import ReactDOM from 'react-dom';
+import store from './reducers';
+import Router from './routers';
+import 'antd/dist/antd.css';
 
 
 ReactDOM.render(<Router store={store} />, document.getElementById('root'))

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {deleteTodoItem, storeTodoItems, putTodoItem} from '../../actions'
 import TodoListItem from '../TodoListItem';
 import {getTodos} from "../../apis/todoList";
+import TodoMenu from "../TodoMenu";
 
 class FinishedTodoListPage extends Component {
 
@@ -17,7 +18,7 @@ class FinishedTodoListPage extends Component {
     render() {
         return (
             <div>
-                <h2>Finished TodoList</h2>
+                <TodoMenu />
                 {
                     this.props.items.map((item, index) => 
                         <TodoListItem key={index} index={index} item={item}

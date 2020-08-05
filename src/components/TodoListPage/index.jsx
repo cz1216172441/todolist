@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import TodoList from './../TodoList'
+import TodoMenu from "../TodoMenu";
 
 class TodoListPage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{width: '80%', margin: '0 auto'}}>
+                <TodoMenu />
                 <TodoList />
             </div>
         );

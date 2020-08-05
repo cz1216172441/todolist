@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {postTodoItem} from '../../actions';
 import {connect} from 'react-redux';
+import { Input, Row, Col, Button } from 'antd';
 
 class TodoListInput extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      text: ""
+      text: ''
     };
-    this.ref = React.createRef();
   }
 
   handleInputChanged = (event) => {
@@ -19,13 +19,15 @@ class TodoListInput extends Component {
   }
 
   handleClick = () => {
-    if (this.ref.current.value.trim() !== "") {
+    if (this.state.text.trim() !== '') {
       const item = {
         content: this.state.text,
         status: false
       }
       this.props.addTodoItem(item);
-      this.ref.current.value = "";
+      this.setState({
+        text: ''
+      })
     } else {
       alert("Please input todo item!");
     }
@@ -34,8 +36,15 @@ class TodoListInput extends Component {
   render() {
     return (
       <div>
-        <input type="text" ref={this.ref} onChange={this.handleInputChanged}/>
-        <button onClick={this.handleClick}>ADD</button>
+        <Row>
+          <Col span={16} >
+            <Input type="text" onChange={this.handleInputChanged}
+                   value={this.state.text} />
+          </Col>
+          <Col span={4} >
+            <Button onClick={this.handleClick}>ADD</Button>
+          </Col>
+        </Row>
       </div>
     );
   }

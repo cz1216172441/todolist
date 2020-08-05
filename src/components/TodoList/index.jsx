@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TodoListInput from './../TodoListInput';
 import TodoListItem from './../TodoListItem';
-import {deleteTodoItem, storeTodoItems, putTodoItem} from '../../actions'
-import PropTypes from 'prop-types'
+import {deleteTodoItem, storeTodoItems, putTodoItem} from '../../actions';
 import {getTodos} from "../../apis/todoList";
+import {List} from "antd";
 
 class TodoList extends Component {
 
@@ -18,21 +18,18 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div>
-        <h2>All TodoList</h2>
-        <TodoListInput/>
-        {
-          this.props.items.map(item => <TodoListItem key={item.id} item={item}
-                          handleChange={() => this.props.changeTodoItemStatus({id: item.id, status: !item.status})}
-                          handleDelete={() => this.props.deleteTodoItem({id: item.id})} />)
-        }
+      <div style={{marginTop: '20px'}}>
+        <TodoListInput />
+        <List style={{marginTop: '20px'}}  itemLayout="horizontal" dataSource={this.props.items} bordered
+              renderItem={item => (
+                  <List.Item>
+                    <TodoListItem key={item.id} item={item}
+                                  handleChange={() => this.props.changeTodoItemStatus({id: item.id, status: !item.status})}
+                                  handleDelete={() => this.props.deleteTodoItem({id: item.id})} />
+                  </List.Item> )} />
       </div>
     );
   }
-}
-
-TodoList.propTypes = {
-  items: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => {
